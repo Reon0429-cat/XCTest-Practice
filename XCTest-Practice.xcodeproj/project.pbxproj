@@ -14,8 +14,6 @@
 		AB55BB67277C8AB500812ABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB55BB66277C8AB500812ABF /* Assets.xcassets */; };
 		AB55BB6A277C8AB500812ABF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB55BB68277C8AB500812ABF /* LaunchScreen.storyboard */; };
 		AB55BB75277C8AB500812ABF /* XCTest_PracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB55BB74277C8AB500812ABF /* XCTest_PracticeTests.swift */; };
-		AB55BB7F277C8AB500812ABF /* XCTest_PracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB55BB7E277C8AB500812ABF /* XCTest_PracticeUITests.swift */; };
-		AB55BB81277C8AB500812ABF /* XCTest_PracticeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB55BB80277C8AB500812ABF /* XCTest_PracticeUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +45,6 @@
 		AB55BB70277C8AB500812ABF /* XCTest-PracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCTest-PracticeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB55BB74277C8AB500812ABF /* XCTest_PracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest_PracticeTests.swift; sourceTree = "<group>"; };
 		AB55BB7A277C8AB500812ABF /* XCTest-PracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCTest-PracticeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB55BB7E277C8AB500812ABF /* XCTest_PracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest_PracticeUITests.swift; sourceTree = "<group>"; };
-		AB55BB80277C8AB500812ABF /* XCTest_PracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest_PracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +77,6 @@
 			children = (
 				AB55BB5C277C8AB200812ABF /* XCTest-Practice */,
 				AB55BB73277C8AB500812ABF /* XCTest-PracticeTests */,
-				AB55BB7D277C8AB500812ABF /* XCTest-PracticeUITests */,
 				AB55BB5B277C8AB200812ABF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,15 +111,6 @@
 				AB55BB74277C8AB500812ABF /* XCTest_PracticeTests.swift */,
 			);
 			path = "XCTest-PracticeTests";
-			sourceTree = "<group>";
-		};
-		AB55BB7D277C8AB500812ABF /* XCTest-PracticeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				AB55BB7E277C8AB500812ABF /* XCTest_PracticeUITests.swift */,
-				AB55BB80277C8AB500812ABF /* XCTest_PracticeUITestsLaunchTests.swift */,
-			);
-			path = "XCTest-PracticeUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,8 +262,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB55BB81277C8AB500812ABF /* XCTest_PracticeUITestsLaunchTests.swift in Sources */,
-				AB55BB7F277C8AB500812ABF /* XCTest_PracticeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
