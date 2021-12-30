@@ -8,39 +8,67 @@
 import XCTest
 @testable import XCTest_Practice
 
-final class Animal {
-    private let person: Person
-    init() {
-        self.person = Person(name: "玲音")
+protocol ReadableRepositoryContract {
+    func read() -> Int
+}
+
+class ImplicitInput {
+    private let repository: ReadableRepositoryContract
+    init(repository: ReadableRepositoryContract) {
+        self.repository = repository
     }
-    func fullName() -> String {
-        // Animalクラス以外の値を利用する
-        // 暗黙的入力
-        return person.add大西()
+    func reduce () -> Int {
+        return repository.read() - 1
+    }
+    class Data {
+        let value: Int
+        init(value: Int) {
+            self.value = value
+        }
+        func double() -> Int {
+            return value * 2
+        }
     }
 }
 
-final class Person {
-    let name: String
-    init(name: String) {
-        self.name = name
+// 本番用のクラス
+class ReadableRepository: ReadableRepositoryContract {
+    private let data: ImplicitInput.Data
+    init(data: ImplicitInput.Data) {
+        self.data = data
     }
-    func add大西() -> String {
-        return "大西" + name
+    func read() -> Int {
+        return self.data.double()
+    }
+}
+
+// 本番でImplicitInputを使う場合
+let repository = ReadableRepository(
+    data: ImplicitInput.Data(value: 5)
+)
+let implicitInput = ImplicitInput(repository: repository)
+let result = implicitInput.reduce()
+
+// スタブを定義する
+class ReadableRepositoryStub: ReadableRepositoryContract {
+    private let base: Int
+    init(base: Int) {
+        self.base = base
+    }
+    func read() -> Int {
+        return self.base
     }
 }
 
 class XCTest_PracticeTests: XCTestCase {
     
-    // 明示的入出力
-    func doSomething(int: Int) -> Int {
-        return 2 * int
-    }
-    
-    func testSomething() {
-        let expected = 20
-        let actual = doSomething(int: 10)
-        XCTAssertEqual(expected, actual)
+    func testMultiplication() {
+        let int = 4
+        let expected = 3
+        let repositoryStub = ReadableRepositoryStub(base: int)
+        let input = ImplicitInput(repository: repositoryStub)
+        let actual = input.reduce()
+        XCTAssertEqual(actual, expected)
     }
     
     override func setUpWithError() throws {

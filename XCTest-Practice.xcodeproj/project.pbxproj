@@ -34,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB531B3C277DB5CF006250AD /* XCTest_PracticeUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTest_PracticeUITests.swift; sourceTree = "<group>"; };
+		AB531B3D277DB5CF006250AD /* XCTest_PracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTest_PracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB55BB5A277C8AB200812ABF /* XCTest-Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XCTest-Practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB55BB5D277C8AB200812ABF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB55BB5F277C8AB200812ABF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,11 +74,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB531B2F277CC8A1006250AD /* XCTest-PracticeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AB531B3C277DB5CF006250AD /* XCTest_PracticeUITests.swift */,
+				AB531B3D277DB5CF006250AD /* XCTest_PracticeUITestsLaunchTests.swift */,
+			);
+			path = "XCTest-PracticeUITests";
+			sourceTree = "<group>";
+		};
 		AB55BB51277C8AB200812ABF = {
 			isa = PBXGroup;
 			children = (
 				AB55BB5C277C8AB200812ABF /* XCTest-Practice */,
 				AB55BB73277C8AB500812ABF /* XCTest-PracticeTests */,
+				AB531B2F277CC8A1006250AD /* XCTest-PracticeUITests */,
 				AB55BB5B277C8AB200812ABF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -188,6 +200,7 @@
 					};
 					AB55BB79277C8AB500812ABF = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 						TestTargetID = AB55BB59277C8AB200812ABF;
 					};
 				};
@@ -516,14 +529,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 242KS3V77L;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "oonishireon.XCTest-PracticeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "XCTest-Practice";
@@ -534,10 +554,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 242KS3V77L;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "oonishireon.XCTest-PracticeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
