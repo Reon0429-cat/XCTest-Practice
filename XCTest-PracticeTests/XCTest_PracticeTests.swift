@@ -8,67 +8,23 @@
 import XCTest
 @testable import XCTest_Practice
 
-protocol ReadableRepositoryContract {
-    func read() -> Int
-}
-
-class ImplicitInput {
-    private let repository: ReadableRepositoryContract
-    init(repository: ReadableRepositoryContract) {
-        self.repository = repository
-    }
-    func reduce () -> Int {
-        return repository.read() - 1
-    }
-    class Data {
-        let value: Int
-        init(value: Int) {
-            self.value = value
-        }
-        func double() -> Int {
-            return value * 2
-        }
-    }
-}
-
-// 本番用のクラス
-class ReadableRepository: ReadableRepositoryContract {
-    private let data: ImplicitInput.Data
-    init(data: ImplicitInput.Data) {
-        self.data = data
-    }
-    func read() -> Int {
-        return self.data.double()
-    }
-}
-
-// 本番でImplicitInputを使う場合
-let repository = ReadableRepository(
-    data: ImplicitInput.Data(value: 5)
-)
-let implicitInput = ImplicitInput(repository: repository)
-let result = implicitInput.reduce()
-
-// スタブを定義する
-class ReadableRepositoryStub: ReadableRepositoryContract {
-    private let base: Int
-    init(base: Int) {
-        self.base = base
-    }
-    func read() -> Int {
-        return self.base
-    }
-}
-
 class XCTest_PracticeTests: XCTestCase {
     
-    func testMultiplication() {
-        let int = 4
-        let expected = 3
-        let repositoryStub = ReadableRepositoryStub(base: int)
-        let input = ImplicitInput(repository: repositoryStub)
-        let actual = input.reduce()
-        XCTAssertEqual(actual, expected)
+    func testRead() {
+        let expected = 99
+        let repository = ReadableRepositoryStub(base: 100)
+        let input = ImplicitInput(repository: repository)
+        let int = input.reduce()
+        XCTAssertEqual(expected, int)
+    }
+    
+    func testWrite() {
+        let int = 2
+        let expected = int
+        let spy = WritableRepositorySpy()
+        let output = ImplicitOutput(repository: spy)
+        output.write(int: int)
+        XCTAssertEqual(expected, spy.callArguments.first!)
     }
     
     override func setUpWithError() throws {
