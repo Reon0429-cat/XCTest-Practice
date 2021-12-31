@@ -8,7 +8,41 @@
 import XCTest
 @testable import XCTest_Practice
 
+struct User {
+    let name: String
+    func convert() -> String? {
+        if name.isEmpty || name.count == 4 {
+            return nil
+        }
+        return name
+    }
+}
+
 class XCTest_PracticeTests: XCTestCase {
+    
+    let user1 = User(name: "REON")
+    let user2 = User(name: "")
+    let user3 = User(name: "ヤマモトタロウ")
+
+    func testUser_引数の名前がconvertすると取得できること() {
+        XCTContext.runActivity(named: "5文字の名前") { _ in
+            XCTAssertEqual(user3.convert(),
+                           "ヤマモトタロウ",
+                           "ヤマモトタロウが一致すること")
+        }
+    }
+    
+    func testUser_から文字の場合はnilになること() {
+        XCTContext.runActivity(named: "から文字") { _ in
+            XCTAssertNil(user2.convert(), "から文字なのでnilになること")
+        }
+    }
+    
+    func testUser_４文字の場合はnilになること() {
+        XCTContext.runActivity(named: "4文字の名前") { _ in
+            XCTAssertNil(user1.convert(), "4文字なのでnilになること")
+        }
+    }
     
     func testRead() {
         let expected = 99

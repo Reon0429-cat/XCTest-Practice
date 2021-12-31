@@ -209,7 +209,6 @@
 					AB55BB79277C8AB500812ABF = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
-						TestTargetID = AB55BB59277C8AB200812ABF;
 					};
 				};
 			};
@@ -554,11 +553,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "oonishireon.XCTest-PracticeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "XCTest-Practice";
 			};
 			name = Debug;
 		};
@@ -579,10 +578,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "oonishireon.XCTest-PracticeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "XCTest-Practice";
 			};
 			name = Release;
 		};
