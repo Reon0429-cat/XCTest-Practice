@@ -28,6 +28,17 @@ func asyncString(completion: ((String) -> ())?) {
     }
 }
 
+enum OperationError: Error {
+    case divisionByZero
+}
+
+func divide(_ x: Int, by y: Int) throws -> Int {
+    if y == 0 {
+        throw OperationError.divisionByZero
+    }
+    return x / y
+}
+
 class XCTest_PracticeTests: XCTestCase {
     
     // 正しい非同期処理のテスト
@@ -46,8 +57,12 @@ class XCTest_PracticeTests: XCTestCase {
         }
     }
     
-
-    
+    func testDivideWhenDivisionByZero() {
+        XCTAssertThrowsError(try divide(3, by: 0)) { error in
+            let error = error as? OperationError
+            XCTAssertEqual(error, OperationError.divisionByZero)
+        }
+    }
     
     
     
