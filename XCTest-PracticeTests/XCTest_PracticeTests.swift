@@ -8,11 +8,113 @@
 import XCTest
 @testable import XCTest_Practice
 
+// スタブ
+protocol AuthManagerProtocol {
+    var isLoggedIn: Bool { get }
+}
+
+class AuthManagerStub: AuthManagerProtocol {
+    var isLoggedIn: Bool = false
+}
+
+class DialogManager {
+    private let authManager: AuthManagerProtocol
+    init(authManager: AuthManagerProtocol) {
+        self.authManager = authManager
+    }
+    var shouldShowLoginDialog: Bool {
+        !authManager.isLoggedIn
+    }
+}
+
+
+// モック
+protocol LoggerProtocol {
+    func sendLog(message: String)
+}
+
+class Logger: LoggerProtocol {
+    func sendLog(message: String) {
+        // 本番用のログ送信の実装
+    }
+}
+
+class LoggerMock: LoggerProtocol {
+    var invokedSendLog = false
+    var invokedSendLogCount = 0
+    var sendLogProperties = [String]()
+    func sendLog(message: String) {
+        invokedSendLog = true
+        invokedSendLogCount += 1
+        sendLogProperties.append(message)
+    }
+}
+
+class Calculator {
+    private let logger: LoggerProtocol
+    init(logger: LoggerProtocol) {
+        self.logger = logger
+    }
+    private enum CalcAction {
+        case add(Int)
+    }
+    private var calcActions = [CalcAction]()
+    func add(num: Int) {
+        calcActions.append(.add(num))
+    }
+    func calc() -> Int {
+        logger.sendLog(message: "Start calc.")
+        var total = 0
+        calcActions.forEach { calcAction in
+            switch calcAction {
+            case .add(let num):
+                logger.sendLog(message: "Add \(num).")
+                total += num
+            }
+        }
+        logger.sendLog(message: "Total is \(total).")
+        logger.sendLog(message: "Finish calc.")
+        return total
+    }
+}
+
+
+
+
+
 
 class XCTest_PracticeTests: XCTestCase {
     
+    func testAdd() {
+        let loggerMock = LoggerMock()
+        let calculator = Calculator(logger: loggerMock)
+        let expectedSendMessages = [
+            "Start calc.",
+            "Add 1.",
+            "Total is 1.",
+            "Finish calc."
+        ]
+        calculator.add(num: 1)
+        XCTAssertEqual(calculator.calc(), 1)
+        // モックに記録された情報をテスト
+        XCTAssertTrue(loggerMock.invokedSendLog)
+        XCTAssertEqual(loggerMock.invokedSendLogCount, 4)
+        XCTAssertEqual(loggerMock.sendLogProperties, expectedSendMessages)
+    }
     
+    func testShowLoginDialog_ログイン済み() {
+        let authManagerStub = AuthManagerStub()
+        authManagerStub.isLoggedIn = true
+        let dialogManager = DialogManager(authManager: authManagerStub)
+        XCTAssertFalse(dialogManager.shouldShowLoginDialog)
+    }
     
+    func testShowLoginDialog_未ログイン() {
+        let authManagerStub = AuthManagerStub()
+        authManagerStub.isLoggedIn = false
+        let dialogManager = DialogManager(authManager: authManagerStub)
+        XCTAssertTrue(dialogManager.shouldShowLoginDialog)
+    }
     
     // 正しい非同期処理のテスト
     func testAsyncString() {
@@ -38,13 +140,13 @@ class XCTest_PracticeTests: XCTestCase {
     }
     
     // 8文字以上であること
-        // 数字が2文字含まれており、合計7文字入力された場合にfalseが返されること
-        // 数字が2文字含まれており、合計8文字入力された場合にtrueが返されること
-        // 数字が2文字含まれており、合計9文字入力された場合にtrueが返されること
+    // 数字が2文字含まれており、合計7文字入力された場合にfalseが返されること
+    // 数字が2文字含まれており、合計8文字入力された場合にtrueが返されること
+    // 数字が2文字含まれており、合計9文字入力された場合にtrueが返されること
     // 数字が2文字以上利用されていること
-        // 数字以外を7文字と数字が1文字入力された場合にfalseが返されること
-        // 数字以外を7文字と数字が2文字入力された場合にtrueが返されること
-        // 数字以外を7文字と数字が3文字入力された場合にtrueが返されること
+    // 数字以外を7文字と数字が1文字入力された場合にfalseが返されること
+    // 数字以外を7文字と数字が2文字入力された場合にtrueが返されること
+    // 数字以外を7文字と数字が3文字入力された場合にtrueが返されること
     
     func test数字以外を7文字と数字が1文字入力された場合にfalseが返されること() {
         XCTAssertFalse(validate(password: "abcdefg1"))
@@ -75,7 +177,7 @@ class XCTest_PracticeTests: XCTestCase {
     let user1 = User(name: "REON")
     let user2 = User(name: "")
     let user3 = User(name: "ヤマモトタロウ")
-
+    
     func testUser_引数の名前がconvertすると取得できること() {
         XCTContext.runActivity(named: "5文字の名前") { _ in
             XCTAssertEqual(user3.convert(),

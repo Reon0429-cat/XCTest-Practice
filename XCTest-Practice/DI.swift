@@ -41,29 +41,6 @@ let userUseCase = UserUseCase(repository: repositroy)
 //let userUseCase = UserUseCase(repository: repository偽物)
 
 
-protocol LoggerProtocol {
-    func sendLog(message: String)
-}
-
-class Logger: LoggerProtocol {
-    func sendLog(message: String) {
-        // 本番用のログ送信の実装
-    }
-}
-
-class DebugLogger: LoggerProtocol {
-    func sendLog(message: String) {
-        // デバッグ用のログ送信の実装
-    }
-}
-
-class Calculator {
-    private let logger: LoggerProtocol
-    init(logger: LoggerProtocol) {
-        self.logger = logger
-    }
-}
-
 // セッターインジェクション
 // イニシャライズ以降にコンポーネントを代入する
 //protocol ViewModelProtocol {
