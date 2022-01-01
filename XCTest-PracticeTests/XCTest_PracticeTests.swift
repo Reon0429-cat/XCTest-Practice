@@ -8,38 +8,11 @@
 import XCTest
 @testable import XCTest_Practice
 
-// 8文字以上であること
-// 数字が2文字以上利用されること
-// 上記を満たさない場合はNG
-func validate(password: String) -> Bool {
-    if password.count <= 7 {
-        return false
-    }
-    let numString = password.components(
-        separatedBy: CharacterSet.decimalDigits.inverted
-    ).joined()
-    return numString.count >= 2
-}
-
-func asyncString(completion: ((String) -> ())?) {
-    DispatchQueue.global().async {
-        sleep(3)
-        completion?("文字列A")
-    }
-}
-
-enum OperationError: Error {
-    case divisionByZero
-}
-
-func divide(_ x: Int, by y: Int) throws -> Int {
-    if y == 0 {
-        throw OperationError.divisionByZero
-    }
-    return x / y
-}
 
 class XCTest_PracticeTests: XCTestCase {
+    
+    
+    
     
     // 正しい非同期処理のテスト
     func testAsyncString() {
@@ -63,10 +36,6 @@ class XCTest_PracticeTests: XCTestCase {
             XCTAssertEqual(error, OperationError.divisionByZero)
         }
     }
-    
-    
-    
-    
     
     // 8文字以上であること
         // 数字が2文字含まれており、合計7文字入力された場合にfalseが返されること
