@@ -17,6 +17,7 @@
 		AB55BB67277C8AB500812ABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB55BB66277C8AB500812ABF /* Assets.xcassets */; };
 		AB55BB6A277C8AB500812ABF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB55BB68277C8AB500812ABF /* LaunchScreen.storyboard */; };
 		AB55BB75277C8AB500812ABF /* XCTest_PracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB55BB74277C8AB500812ABF /* XCTest_PracticeTests.swift */; };
+		ABB2879D27806AD30067B8B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2879C27806AD30067B8B2 /* User.swift */; };
 		ABD09A4A277E1BB700BE0F32 /* Spy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD09A49277E1BB700BE0F32 /* Spy.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		AB55BB70277C8AB500812ABF /* XCTest-PracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCTest-PracticeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB55BB74277C8AB500812ABF /* XCTest_PracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest_PracticeTests.swift; sourceTree = "<group>"; };
 		AB55BB7A277C8AB500812ABF /* XCTest-PracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCTest-PracticeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABB2879C27806AD30067B8B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ABD09A49277E1BB700BE0F32 /* Spy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 				AB55BB6B277C8AB500812ABF /* Info.plist */,
 				AB531B46277E13EA006250AD /* Stub.swift */,
 				ABD09A49277E1BB700BE0F32 /* Spy.swift */,
+				ABB2879C27806AD30067B8B2 /* User.swift */,
 			);
 			path = "XCTest-Practice";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			files = (
 				ABD09A4A277E1BB700BE0F32 /* Spy.swift in Sources */,
 				AB55BB62277C8AB200812ABF /* ViewController.swift in Sources */,
+				ABB2879D27806AD30067B8B2 /* User.swift in Sources */,
 				AB55BB5E277C8AB200812ABF /* AppDelegate.swift in Sources */,
 				AB55BB60277C8AB200812ABF /* SceneDelegate.swift in Sources */,
 				AB531B47277E13EA006250AD /* Stub.swift in Sources */,

@@ -8,17 +8,55 @@
 import XCTest
 @testable import XCTest_Practice
 
-struct User {
-    let name: String
-    func convert() -> String? {
-        if name.isEmpty || name.count == 4 {
-            return nil
-        }
-        return name
+// 8文字以上であること
+// 数字が2文字以上利用されること
+// 上記を満たさない場合はNG
+func validate(password: String) -> Bool {
+    if password.count <= 7 {
+        return false
     }
+    let numString = password.components(
+        separatedBy: CharacterSet.decimalDigits.inverted
+    ).joined()
+    return numString.count >= 2
 }
 
 class XCTest_PracticeTests: XCTestCase {
+    
+    // 8文字以上であること
+        // 数字が2文字含まれており、合計7文字入力された場合にfalseが返されること
+        // 数字が2文字含まれており、合計8文字入力された場合にtrueが返されること
+        // 数字が2文字含まれており、合計9文字入力された場合にtrueが返されること
+    // 数字が2文字以上利用されていること
+        // 数字以外を7文字と数字が1文字入力された場合にfalseが返されること
+        // 数字以外を7文字と数字が2文字入力された場合にtrueが返されること
+        // 数字以外を7文字と数字が3文字入力された場合にtrueが返されること
+    
+    func test数字が2文字含まれており_合計7文字入力された場合にfalseが返されること() {
+        XCTAssertFalse(validate(password: "abcde12"))
+    }
+        
+    func test数字が2文字含まれており_合計8文字入力された場合にtrueが返されること() {
+        XCTAssertTrue(validate(password: "abcdef12"))
+    }
+    
+    func test数字が2文字含まれており_合計9文字入力された場合にtrueが返されること() {
+        XCTAssertTrue(validate(password: "abcdefg12"))
+    }
+    
+    func test数字以外を7文字と数字が1文字入力された場合にfalseが返されること() {
+        XCTAssertFalse(validate(password: "abcdefg1"))
+    }
+    
+    func test数字以外を7文字と数字が2文字入力された場合にtrueが返されること() {
+        XCTAssertTrue(validate(password: "abcdefg12"))
+    }
+    
+    func test数字以外を7文字と数字が3文字入力された場合にtrueが返されること() {
+        XCTAssertTrue(validate(password: "abcdefg123"))
+    }
+    
+    
     
     let user1 = User(name: "REON")
     let user2 = User(name: "")
