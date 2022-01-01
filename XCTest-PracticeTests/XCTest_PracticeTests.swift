@@ -21,7 +21,37 @@ func validate(password: String) -> Bool {
     return numString.count >= 2
 }
 
+func asyncString(completion: ((String) -> ())?) {
+    DispatchQueue.global().async {
+        sleep(3)
+        completion?("文字列A")
+    }
+}
+
 class XCTest_PracticeTests: XCTestCase {
+    
+    // 正しい非同期処理のテスト
+    func testAsyncString() {
+        let exp = XCTestExpectation(description: "Async String")
+        asyncString { string in
+            XCTAssertEqual(string, "文字列A")
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 5.0)
+        
+        // 間違った非同期処理のテスト
+        // アサーションが評価されていないためテストが成功する
+        asyncString { string in
+            XCTAssertEqual(string, "文字列B")
+        }
+    }
+    
+
+    
+    
+    
+    
+    
     
     // 8文字以上であること
         // 数字が2文字含まれており、合計7文字入力された場合にfalseが返されること
@@ -31,18 +61,6 @@ class XCTest_PracticeTests: XCTestCase {
         // 数字以外を7文字と数字が1文字入力された場合にfalseが返されること
         // 数字以外を7文字と数字が2文字入力された場合にtrueが返されること
         // 数字以外を7文字と数字が3文字入力された場合にtrueが返されること
-    
-    func test数字が2文字含まれており_合計7文字入力された場合にfalseが返されること() {
-        XCTAssertFalse(validate(password: "abcde12"))
-    }
-        
-    func test数字が2文字含まれており_合計8文字入力された場合にtrueが返されること() {
-        XCTAssertTrue(validate(password: "abcdef12"))
-    }
-    
-    func test数字が2文字含まれており_合計9文字入力された場合にtrueが返されること() {
-        XCTAssertTrue(validate(password: "abcdefg12"))
-    }
     
     func test数字以外を7文字と数字が1文字入力された場合にfalseが返されること() {
         XCTAssertFalse(validate(password: "abcdefg1"))
@@ -56,7 +74,19 @@ class XCTest_PracticeTests: XCTestCase {
         XCTAssertTrue(validate(password: "abcdefg123"))
     }
     
-    
+    func testパスワードバリデーションの文字数() {
+        XCTContext.runActivity(named: "数字が2文字以上含まれている場合") { _ in
+            XCTContext.runActivity(named: "合計7文字が入力された場合") { _ in
+                XCTAssertFalse(validate(password: "abcde12"))
+            }
+            XCTContext.runActivity(named: "合計8文字入力された場合") { _ in
+                XCTAssertTrue(validate(password: "abcdef12"))
+            }
+            XCTContext.runActivity(named: "合計9文字入力された場合") { _ in
+                XCTAssertTrue(validate(password: "abcdefg12"))
+            }
+        }
+    }
     
     let user1 = User(name: "REON")
     let user2 = User(name: "")
